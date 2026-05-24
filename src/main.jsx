@@ -1,6 +1,6 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { Package, Video, ShieldCheck, Truck, Sparkles, Instagram, Ghost, MessageCircle } from 'lucide-react'
+import { Package, Video, ShieldCheck, Truck, Sparkles, Ghost, MessageCircle } from 'lucide-react'
 import roomGhost from './assets/room-ghost.png'
 import fullGhost from './assets/full-ghost.png'
 import './style.css'
