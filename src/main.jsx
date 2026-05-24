@@ -19,7 +19,7 @@ function App() {
           <p className="eyebrow">Orion Pulls</p>
           <h1>Pokémon Rip & Ship from the Netherlands</h1>
           <p className="subtitle">
-            Claim packs, watch them opened live, and get your cards packed safely with a spooky purple collector vibe.
+            Claim packs, watch them opened live, and get your hits sleeved + toploaded before shipping.
           </p>
           <div className="buttons">
             <a href="#packs" className="button primary">View Packs</a>
@@ -67,8 +67,8 @@ function App() {
         <div className="steps">
           <div><Package /><h3>1. Claim a pack</h3><p>Choose a pack before or during the stream.</p></div>
           <div><Video /><h3>2. Ripped live</h3><p>Your pack is opened on camera, not off-screen.</p></div>
-          <div><ShieldCheck /><h3>3. Hits protected</h3><p>Hits are sleeved live. Valuable hits get toploaders.</p></div>
-          <div><Truck /><h3>4. Shipped safely</h3><p>Your cards are packed and shipped from the Netherlands.</p></div>
+          <div><ShieldCheck /><h3>3. Hits sleeved + toploaded</h3><p>Hits are sleeved and toploaded live.</p></div>
+          <div><Truck /><h3>4. Shipped safely</h3><p>Your cards are packed safely and shipped from the Netherlands.</p></div>
         </div>
       </section>
 
@@ -80,7 +80,7 @@ function App() {
             <li>Packs are opened live on stream.</li>
             <li>No refunds after a pack has been opened.</li>
             <li>Pulls are random. Bad packs can happen.</li>
-            <li>Hits are sleeved live.</li>
+            <li>Hits are sleeved and toploaded live.</li>
             <li>Shipping is paid separately unless stated otherwise.</li>
             <li>Orders are handled manually while this is still being tested.</li>
           </ul>
