@@ -285,15 +285,19 @@ h1 {
 
 .packImage {
   display: block;
-  width: 100%;
+  width: 72%;
+  max-width: 220px;
   aspect-ratio: 3 / 4;
   object-fit: cover;
   background: rgba(255,255,255,0.04);
-  border-bottom: 1px solid rgba(216, 180, 254, 0.14);
+  border: 1px solid rgba(216, 180, 254, 0.14);
+  border-radius: 20px;
+  margin: 22px auto 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.28);
 }
 
 .packInfo {
-  padding: 24px 24px 28px;
+  padding: 20px 24px 28px;
 }
 
 .packTitleRow {
