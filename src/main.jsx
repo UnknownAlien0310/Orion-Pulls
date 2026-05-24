@@ -3,13 +3,16 @@ import { createRoot } from 'react-dom/client'
 import { Package, Video, ShieldCheck, Truck, Sparkles, Ghost, MessageCircle } from 'lucide-react'
 import roomGhost from './assets/room-ghost.png'
 import fullGhost from './assets/full-ghost.png'
+import blackBoltImg from './assets/packs/black-bolt.svg'
+import whiteFlareImg from './assets/packs/white-flare.svg'
+import morePacksImg from './assets/packs/more-packs.svg'
 import './style.css'
 
 function App() {
   const packs = [
-    { name: 'Black Bolt', status: 'Test stock soon', note: 'Opened live • Zekrom chase energy' },
-    { name: 'White Flare', status: 'Wanted next', note: 'Ghost-type IR vibes • Ghost pick' },
-    { name: 'More packs', status: 'Coming later', note: 'New packs added before streams' },
+    { name: 'Black Bolt', status: 'Test stock soon', note: 'Opened live • Zekrom chase energy', image: blackBoltImg },
+    { name: 'White Flare', status: 'Wanted next', note: 'Ghost-type IR vibes • Ghost pick', image: whiteFlareImg },
+    { name: 'More packs', status: 'Coming later', note: 'New packs added before streams', image: morePacksImg },
   ]
 
   return (
@@ -46,11 +49,16 @@ function App() {
         </div>
         <div className="grid">
           {packs.map((pack) => (
-            <div className="card" key={pack.name}>
-              <Package />
-              <h3>{pack.name}</h3>
-              <p>{pack.note}</p>
-              <span>{pack.status}</span>
+            <div className="card packCard" key={pack.name}>
+              <img src={pack.image} alt={pack.name + ' pack art'} className="packImage" />
+              <div className="packInfo">
+                <div className="packTitleRow">
+                  <Package />
+                  <h3>{pack.name}</h3>
+                </div>
+                <p>{pack.note}</p>
+                <span>{pack.status}</span>
+              </div>
             </div>
           ))}
         </div>

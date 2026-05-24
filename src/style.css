@@ -276,3 +276,39 @@ h1 {
     padding: 18px;
   }
 }
+
+
+.packCard {
+  overflow: hidden;
+  padding: 0;
+}
+
+.packImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background: rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(216, 180, 254, 0.14);
+}
+
+.packInfo {
+  padding: 24px 24px 28px;
+}
+
+.packTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.packTitleRow h3 {
+  margin: 0;
+}
+
+.packTitleRow svg {
+  color: #c084fc;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+}
