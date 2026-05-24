@@ -8,7 +8,7 @@ import './style.css'
 function App() {
   const packs = [
     { name: 'Black Bolt', status: 'Test stock soon', note: 'Opened live • Zekrom chase energy' },
-    { name: 'White Flare', status: 'Wanted next', note: 'Ghost-type IR vibes • Justin pick' },
+    { name: 'White Flare', status: 'Wanted next', note: 'Ghost-type IR vibes • Ghost pick' },
     { name: 'More packs', status: 'Coming later', note: 'New packs added before streams' },
   ]
 
@@ -16,7 +16,7 @@ function App() {
     <main>
       <section className="hero">
         <div className="heroText">
-          <p className="eyebrow">Justin | Orion</p>
+          <p className="eyebrow">Orion Pulls</p>
           <h1>Pokémon Rip & Ship from the Netherlands</h1>
           <p className="subtitle">
             Claim packs, watch them opened live, and get your cards packed safely with a spooky purple collector vibe.
@@ -88,7 +88,7 @@ function App() {
 
         <div className="mascotPanel">
           <img src={fullGhost} alt="Full body purple ghost mascot" />
-          <h3>Official Purple Ghost Mascot</h3>
+          <h3>Purple Ghost Mascot</h3>
           <p>Cute, mischievous, spooky, and ready for big pulls.</p>
         </div>
       </section>
