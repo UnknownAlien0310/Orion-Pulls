@@ -5,14 +5,14 @@ import roomGhost from './assets/room-ghost.png'
 import fullGhost from './assets/full-ghost.png'
 import blackBoltImg from './assets/packs/black-bolt.jpg'
 import whiteFlareImg from './assets/packs/white-flare.svg'
-import morePacksImg from './assets/packs/more-packs.jpg'
+import destinedRivalsImg from './assets/packs/destined-rivals.jpg'
 import './style.css'
 
 function App() {
   const packs = [
     { name: 'Black Bolt', status: 'Test stock soon', note: 'Opened live • Zekrom chase energy', image: blackBoltImg },
     { name: 'White Flare', status: 'Wanted next', note: 'Ghost-type IR vibes • Ghost pick', image: whiteFlareImg },
-    { name: 'More packs', status: 'Coming later', note: 'New packs added before streams', image: morePacksImg },
+    { name: 'Destined Rivals', status: 'Coming later', note: 'New packs added before streams', image: destinedRivalsImg },
   ]
 
   return (
