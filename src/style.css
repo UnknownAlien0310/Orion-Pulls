@@ -1069,3 +1069,49 @@ h1 {
     height: 92px;
   }
 }
+
+
+/* v23: normal nav labels left, cart right */
+.navbar {
+  justify-content: space-between;
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  min-width: 0;
+}
+
+.navLeft .navLinks {
+  justify-content: flex-start;
+}
+
+.navbar > .cartNavLink {
+  margin-left: auto;
+  color: #f3e8ff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.navbar > .cartNavLink:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .navLeft {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .navbar > .cartNavLink {
+    margin-left: 0;
+  }
+}

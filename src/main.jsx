@@ -89,32 +89,35 @@ function App() {
 function Navbar({ cartCount }) {
   return (
     <nav className="navbar">
-      <a href="#/home" className="logoLink">
-        <img src={siteLogo} alt="Orion Pulls logo" className="navLogoImg" />
-        <span>Orion Pulls</span>
-      </a>
-
-      <div className="navLinks">
-        <a href="#/home">Home</a>
-
-        <div className="navDropdown">
-          <a href="#/rip-and-ship">Rip&Ship <ChevronDown size={14} /></a>
-          <div className="dropdownMenu">
-            <a href="#/rip-and-ship">How It Works</a>
-            <a href="#/booster-packs">Booster Packs</a>
-          </div>
-        </div>
-
-        <a href="#/rules">Rules</a>
-        <a href="#/about-me">About Me</a>
-        <a href="#/delivery-fee">Delivery Fee</a>
-        <a href="#/contact">Contact</a>
-        <a href="#/cart" className="cartNavLink">
-          <ShoppingCart size={18} />
-          <span>Cart</span>
-          {cartCount > 0 && <strong>{cartCount}</strong>}
+      <div className="navLeft">
+        <a href="#/home" className="logoLink">
+          <img src={siteLogo} alt="Orion Pulls logo" className="navLogoImg" />
+          <span>Orion Pulls</span>
         </a>
+
+        <div className="navLinks">
+          <a href="#/home">Home</a>
+
+          <div className="navDropdown">
+            <a href="#/rip-and-ship">Rip&Ship <ChevronDown size={14} /></a>
+            <div className="dropdownMenu">
+              <a href="#/rip-and-ship">How It Works</a>
+              <a href="#/booster-packs">Booster Packs</a>
+            </div>
+          </div>
+
+          <a href="#/rules">Rules</a>
+          <a href="#/about-me">About Me</a>
+          <a href="#/delivery-fee">Delivery Fee</a>
+          <a href="#/contact">Contact</a>
+        </div>
       </div>
+
+      <a href="#/cart" className="cartNavLink">
+        <ShoppingCart size={18} />
+        <span>Cart</span>
+        {cartCount > 0 && <strong>{cartCount}</strong>}
+      </a>
     </nav>
   )
 }
