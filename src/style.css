@@ -1165,3 +1165,33 @@ h1 {
 .packButtons .miniButton {
   width: 100%;
 }
+
+
+.paymentError {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fee2e2;
+  color: #7f1d1d;
+  border: 1px solid #fecaca;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+.payButton:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+
+.successPage svg {
+  color: #86efac;
+  filter: drop-shadow(0 0 18px rgba(134, 239, 172, 0.35));
+}
+
+.successPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Package, Video, ShieldCheck, Truck, Sparkles, Ghost, Mail, ChevronDown, CreditCard, Lock, ShoppingCart } from 'lucide-react'
+import { Package, Video, ShieldCheck, Truck, Sparkles, Ghost, Mail, ChevronDown, CreditCard, Lock, AlertCircle, CheckCircle, ShoppingCart } from 'lucide-react'
 import roomGhost from './assets/room-ghost.png'
 import fullGhost from './assets/full-ghost.png'
 import blackBoltImg from './assets/packs/black-bolt.svg'
@@ -80,7 +80,8 @@ function App() {
       {page === 'about-me' && <AboutPage />}
       {page === 'delivery-fee' && <DeliveryFeePage />}
       {page === 'contact' && <ContactPage />}
-      {page === 'checkout' && <CheckoutPage />}
+      {page === 'checkout' && <CheckoutPage cartItems={cartItems} />}
+      {page === 'success' && <SuccessPage />}
     </main>
   )
 }
@@ -336,18 +337,49 @@ function CartPage({ cartItems, updateCartQuantity, removeFromCart }) {
 }
 
 
-function CheckoutPage() {
+function CheckoutPage({ cartItems = [] }) {
   const selectedPack = new URLSearchParams(window.location.hash.split('?')[1] || '').get('pack') || 'Booster Pack'
   const [quantity, setQuantity] = useState(1)
   const [shippingOption, setShippingOption] = useState('ship-now')
+  const [isPaying, setIsPaying] = useState(false)
+  const [paymentError, setPaymentError] = useState('')
+
+  const checkoutItems = cartItems.length > 0
+    ? cartItems
+    : [{ name: selectedPack, quantity, note: 'Rip & Ship Booster Pack' }]
 
   const decreaseQuantity = () => setQuantity((current) => Math.max(1, current - 1))
   const increaseQuantity = () => setQuantity((current) => current + 1)
+  const subtotal = checkoutItems.reduce((total, item) => total + (14.95 * item.quantity), 0)
+
+  const handleStripePayment = async () => {
+    setPaymentError('')
+    setIsPaying(true)
+
+    try {
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: checkoutItems, shippingOption }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Could not start Stripe Checkout.')
+      }
+
+      window.location.href = data.url
+    } catch (error) {
+      setPaymentError(error.message || 'Payment failed to start.')
+      setIsPaying(false)
+    }
+  }
 
   return (
     <section className="checkoutShell">
       <div className="checkoutFormSide">
-        <a href="#/booster-packs" className="backLink">← Back to packs</a>
+        <a href="#/cart" className="backLink">← Back to cart</a>
         <h1 className="checkoutBrandTitle">Orion Pulls</h1>
 
         <div className="checkoutBlock">
@@ -391,67 +423,65 @@ function CheckoutPage() {
           <h2>Shipping Method</h2>
           <div className="shippingChoice checkoutStyle">
             <label>
-              <input 
-                type="radio" 
-                name="shipping" 
-                checked={shippingOption === 'ship-now'}
-                onChange={() => setShippingOption('ship-now')}
-              />
-              <span>
-                <strong>Ship Now</strong>
-                <small>Pay shipping and send after the stream.</small>
-              </span>
+              <input type="radio" name="shipping" checked={shippingOption === 'ship-now'} onChange={() => setShippingOption('ship-now')} />
+              <span><strong>Ship Now</strong><small>Pay shipping and send after the stream.</small></span>
             </label>
 
             <label>
-              <input 
-                type="radio" 
-                name="shipping" 
-                checked={shippingOption === 'hold'}
-                onChange={() => setShippingOption('hold')}
-              />
-              <span>
-                <strong>Hold My Cards</strong>
-                <small>Hold safely up to 2 months to combine shipping.</small>
-              </span>
+              <input type="radio" name="shipping" checked={shippingOption === 'hold'} onChange={() => setShippingOption('hold')} />
+              <span><strong>Hold My Cards</strong><small>Hold safely up to 2 months to combine shipping.</small></span>
             </label>
           </div>
         </div>
 
         <div className="checkoutBlock">
           <h2>Payment</h2>
-          <p className="mutedText">Payment is not connected yet. This is a checkout preview.</p>
-          <button className="payButton">
-            <CreditCard size={18} /> Continue to Payment
+          <p className="mutedText">You’ll be redirected to Stripe Checkout in test mode.</p>
+          {paymentError && (
+            <div className="paymentError">
+              <AlertCircle size={18} />
+              <span>{paymentError}</span>
+            </div>
+          )}
+          <button className="payButton" onClick={handleStripePayment} disabled={isPaying}>
+            <CreditCard size={18} /> {isPaying ? 'Opening Stripe…' : 'Continue to Payment'}
           </button>
         </div>
       </div>
 
       <div className="checkoutSummarySide">
-        <div className="summaryProduct">
-          <div className="summaryThumb">
-            <Package size={30} />
-            <span>{quantity}</span>
-          </div>
+        {checkoutItems.map((item) => (
+          <div className="summaryProduct" key={item.name}>
+            <div className="summaryThumb">
+              <Package size={30} />
+              <span>{item.quantity}</span>
+            </div>
 
-          <div className="summaryProductInfo">
-            <strong>{selectedPack}</strong>
-            <p>Rip & Ship Booster Pack</p>
-          </div>
+            <div className="summaryProductInfo">
+              <strong>{item.name}</strong>
+              <p>Rip & Ship Booster Pack</p>
+            </div>
 
-          <div className="summaryProductActions">
+            <div className="summaryProductActions">
+              <div className="summaryPrice">€ {(14.95 * item.quantity).toFixed(2)}</div>
+            </div>
+          </div>
+        ))}
+
+        {cartItems.length === 0 && (
+          <div className="quantityCheckoutLine">
+            <span>Quantity</span>
             <div className="quantityRow">
               <button type="button" onClick={decreaseQuantity}>-</button>
               <span>{quantity}</span>
               <button type="button" onClick={increaseQuantity}>+</button>
             </div>
-            <div className="summaryPrice">€ --,--</div>
           </div>
-        </div>
+        )}
 
         <div className="summaryLine">
           <span>Subtotal</span>
-          <strong>€ --,--</strong>
+          <strong>€ {subtotal.toFixed(2)}</strong>
         </div>
 
         <div className="summaryLine">
@@ -461,13 +491,30 @@ function CheckoutPage() {
 
         <div className="summaryTotal">
           <span>Total</span>
-          <strong>€ --,--</strong>
+          <strong>€ {subtotal.toFixed(2)}</strong>
         </div>
 
         <div className="secureNote">
           <Lock size={18} />
           <span>Packs are opened live. No refunds after ripping.</span>
         </div>
+      </div>
+    </section>
+  )
+}
+
+function SuccessPage() {
+  return (
+    <section className="pageContent successPage">
+      <CheckCircle size={54} />
+      <p className="smallTitle">Payment complete</p>
+      <h1>Thank you!</h1>
+      <p className="pageIntro">
+        Your Stripe test payment was successful. Keep this page as the order confirmation screen.
+      </p>
+      <div className="buttons">
+        <a className="button primary" href="#/booster-packs">View More Packs</a>
+        <a className="button secondary" href="#/home">Home</a>
       </div>
     </section>
   )
