@@ -1155,3 +1155,13 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* v25: Add to Cart only */
+.packButtons {
+  grid-template-columns: 1fr !important;
+}
+
+.packButtons .miniButton {
+  width: 100%;
+}
