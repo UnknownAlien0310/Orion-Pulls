@@ -57,10 +57,12 @@ function Navbar() {
         <div className="navDropdown">
           <a href="#/rip-and-ship">Rip&Ship <ChevronDown size={14} /></a>
           <div className="dropdownMenu">
+            <a href="#/rip-and-ship">How It Works</a>
             <a href="#/booster-packs">Booster Packs</a>
           </div>
         </div>
 
+        <a href="#/rules">Rules</a>
         <a href="#/about-me">About Me</a>
         <a href="#/delivery-fee">Delivery Fee</a>
         <a href="#/contact">Contact</a>
@@ -112,6 +114,31 @@ function RipShipPage() {
       <div className="buttons">
         <a className="button primary" href="#/booster-packs"><Package size={18} /> View Booster Packs</a>
         <a className="button secondary" href="#/rules">Read Rules</a>
+      </div>
+    </section>
+  )
+}
+
+function RulesPage() {
+  return (
+    <section className="pageContent">
+      <p className="smallTitle">Please read first</p>
+      <h1>Rules</h1>
+      <p className="pageIntro">
+        These rules keep every rip clear, fair, and organized.
+      </p>
+
+      <div className="rulesPanel standalone">
+        <h2>Stream Rules</h2>
+        <ul>
+          <li>Packs are opened live on stream.</li>
+          <li>No refunds after a pack has been opened.</li>
+          <li>Pulls are random. Bad packs can happen.</li>
+          <li>Hits are sleeved and toploaded live.</li>
+          <li>Shipping is paid separately unless stated otherwise.</li>
+          <li>You can choose to ship now or hold your cards for up to 2 months.</li>
+          <li>Orders are handled manually while this is still being tested.</li>
+        </ul>
       </div>
     </section>
   )
