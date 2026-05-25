@@ -417,3 +417,35 @@ h1 {
 .dropdownMenu a:first-child {
   border-bottom: 1px solid rgba(216, 180, 254, 0.10);
 }
+
+
+.navLogoImg {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.28));
+}
+
+.heroLogo {
+  width: min(420px, 100%);
+  height: auto;
+  display: block;
+  margin: 0 0 18px;
+  filter: drop-shadow(0 0 28px rgba(168, 85, 247, 0.26));
+}
+
+.logoMark {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .navLogoImg {
+    width: 44px;
+    height: 44px;
+  }
+
+  .heroLogo {
+    width: min(320px, 92%);
+  }
+}

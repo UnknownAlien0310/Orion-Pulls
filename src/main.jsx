@@ -6,6 +6,7 @@ import fullGhost from './assets/full-ghost.png'
 import blackBoltImg from './assets/packs/black-bolt.svg'
 import whiteFlareImg from './assets/packs/white-flare.svg'
 import destinedRivalsImg from './assets/packs/destined-rivals.svg'
+import siteLogo from './assets/orion-logo.png'
 import './style.css'
 
 const packs = [
@@ -47,7 +48,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <a href="#/home" className="logoLink">
-        <span className="logoMark">👻</span>
+        <img src={siteLogo} alt="Orion Pulls logo" className="navLogoImg" />
         <span>Orion Pulls</span>
       </a>
 
@@ -75,6 +76,7 @@ function HomePage() {
   return (
     <section className="hero page">
       <div className="heroText">
+        <img src={siteLogo} alt="Orion Pulls logo" className="heroLogo" />
         <p className="eyebrow">Orion Pulls</p>
         <h1>Pokémon Rip & Ship from the Netherlands</h1>
         <p className="subtitle">
