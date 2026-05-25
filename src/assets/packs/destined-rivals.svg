@@ -1,20 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="840" viewBox="0 0 600 840" fill="none">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0f172a"/>
-      <stop offset="100%" stop-color="#4c1d95"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="35%" r="50%">
-      <stop offset="0%" stop-color="#f0abfc" stop-opacity="0.95"/>
-      <stop offset="60%" stop-color="#8b5cf6" stop-opacity="0.45"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="600" height="840" rx="36" fill="url(#bg)"/>
-  <circle cx="300" cy="290" r="195" fill="url(#glow)"/>
-  <rect x="180" y="170" width="95" height="135" rx="16" fill="#faf5ff" fill-opacity="0.9"/>
-  <rect x="250" y="220" width="95" height="135" rx="16" fill="#f5d0fe" fill-opacity="0.95"/>
-  <rect x="320" y="170" width="95" height="135" rx="16" fill="#e9d5ff" fill-opacity="0.9"/>
-  <text x="50%" y="680" text-anchor="middle" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="#faf5ff">More Packs</text>
-  <text x="50%" y="740" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#e9d5ff">Temporary pack image</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="840" viewBox="0 0 600 840">
+<rect width="600" height="840" rx="36" fill="#0f0618"/>
+<circle cx="300" cy="280" r="180" fill="#9333ea" opacity="0.7"/>
+<rect x="190" y="160" width="220" height="310" rx="24" fill="#ffffff" opacity="0.9"/>
+<text x="300" y="670" text-anchor="middle" font-family="Arial" font-size="50" font-weight="700" fill="#ffffff">Destined Rivals</text>
+<text x="300" y="730" text-anchor="middle" font-family="Arial" font-size="24" fill="#e9d5ff">Pack image</text>
 </svg>
