@@ -35,6 +35,7 @@ function App() {
       {page === 'home' && <HomePage />}
       {page === 'rip-and-ship' && <RipShipPage />}
       {page === 'booster-packs' && <BoosterPacksPage />}
+      {page === 'rules' && <RulesPage />}
       {page === 'about-me' && <AboutPage />}
       {page === 'delivery-fee' && <DeliveryFeePage />}
       {page === 'contact' && <ContactPage />}
@@ -107,6 +108,23 @@ function RipShipPage() {
         <div><ShieldCheck /><h3>3. Hits sleeved + toploaded</h3><p>Hits are sleeved and toploaded live.</p></div>
         <div><Truck /><h3>4. Shipped safely</h3><p>Your cards are packed safely and shipped from the Netherlands.</p></div>
       </div>
+
+      <div className="buttons">
+        <a className="button primary" href="#/booster-packs"><Package size={18} /> View Booster Packs</a>
+        <a className="button secondary" href="#/rules">Read Rules</a>
+      </div>
+    </section>
+  )
+}
+
+function RulesPage() {
+  return (
+    <section className="pageContent">
+      <p className="smallTitle">Please read first</p>
+      <h1>Rules</h1>
+      <p className="pageIntro">
+        These rules keep every rip clear, fair, and organized.
+      </p>
 
       <div className="rulesPanel standalone">
         <h2>Stream Rules</h2>
