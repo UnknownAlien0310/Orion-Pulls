@@ -1115,3 +1115,43 @@ h1 {
     margin-left: 0;
   }
 }
+
+
+/* v24: clean booster cards */
+.packInfo > p,
+.packInfo > span {
+  display: none !important;
+}
+
+.packButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.packButtons .miniButton {
+  width: 100%;
+  min-height: 54px;
+  margin: 0;
+  justify-content: center;
+  text-align: center;
+  border-radius: 16px;
+  font-size: 15px;
+  padding: 0 16px;
+}
+
+.packButtons .secondaryMini {
+  display: inline-flex;
+  align-items: center;
+}
+
+.packTitleRow {
+  margin-top: 8px;
+}
+
+@media (max-width: 700px) {
+  .packButtons {
+    grid-template-columns: 1fr;
+  }
+}

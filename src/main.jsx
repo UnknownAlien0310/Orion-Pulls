@@ -212,14 +212,14 @@ function BoosterPacksPage({ addToCart }) {
                 <Package />
                 <h3>{pack.name}</h3>
               </div>
-              <p>{pack.note}</p>
-              <span>{pack.status}</span>
-              <button className="miniButton" type="button" onClick={() => addToCart(pack)}>
+              <div className="packButtons">
+                <button className="miniButton" type="button" onClick={() => addToCart(pack)}>
                 <ShoppingCart size={16} /> Add to Cart
               </button>
-              <a className="miniButton secondaryMini" href={`#/checkout?pack=${encodeURIComponent(pack.name)}`}>
-                Buy Now
-              </a>
+                <a className="miniButton secondaryMini" href={`#/checkout?pack=${encodeURIComponent(pack.name)}`}>
+                  Buy Now
+                </a>
+              </div>
             </div>
           </div>
         ))}
