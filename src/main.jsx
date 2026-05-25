@@ -3,9 +3,9 @@ import { createRoot } from 'react-dom/client'
 import { Package, Video, ShieldCheck, Truck, Sparkles, Ghost, MessageCircle } from 'lucide-react'
 import roomGhost from './assets/room-ghost.png'
 import fullGhost from './assets/full-ghost.png'
-import blackBoltImg from './assets/packs/black-bolt.svg'
+import blackBoltImg from './assets/packs/black-bolt.jpg'
 import whiteFlareImg from './assets/packs/white-flare.svg'
-import morePacksImg from './assets/packs/more-packs.svg'
+import morePacksImg from './assets/packs/more-packs.jpg'
 import './style.css'
 
 function App() {
