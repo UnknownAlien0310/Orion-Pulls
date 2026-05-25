@@ -1,476 +1,381 @@
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-  background: #07020d;
-  color: white;
-}
-
-main {
-  overflow: hidden;
-}
-
-.hero {
-  min-height: 100vh;
-  padding: 72px 8%;
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 48px;
-  align-items: center;
-  background:
-    radial-gradient(circle at 82% 18%, rgba(168, 85, 247, 0.58), transparent 30%),
-    radial-gradient(circle at 22% 82%, rgba(88, 28, 135, 0.75), transparent 36%),
-    linear-gradient(135deg, #08020f, #10051f 45%, #050108);
-}
-
-.eyebrow, .smallTitle {
-  display: inline-block;
-  color: #e9d5ff;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-weight: 900;
-}
-
-.eyebrow {
-  padding: 9px 14px;
-  border: 1px solid rgba(216, 180, 254, 0.25);
-  border-radius: 999px;
-  background: rgba(126, 34, 206, 0.2);
-}
-
-h1 {
-  font-size: clamp(42px, 7vw, 82px);
-  line-height: 0.92;
-  margin: 20px 0;
-  letter-spacing: -4px;
-}
-
-.subtitle {
-  font-size: 20px;
-  max-width: 620px;
-  color: #eadcff;
-  line-height: 1.6;
-}
-
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 34px;
-}
-
-.buttons.center {
-  justify-content: center;
-}
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 15px 22px;
-  border-radius: 18px;
-  text-decoration: none;
-  font-weight: 900;
-  transition: transform 0.18s ease, opacity 0.18s ease;
-}
-
-.button:hover {
-  transform: translateY(-2px);
-}
-
-.primary {
-  background: #a855f7;
-  color: white;
-  box-shadow: 0 0 40px rgba(168, 85, 247, 0.38);
-}
-
-.secondary {
-  color: #f3e8ff;
-  border: 1px solid rgba(216, 180, 254, 0.35);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.profileCard {
-  border: 1px solid rgba(216, 180, 254, 0.22);
-  border-radius: 40px;
-  background:
-    linear-gradient(145deg, rgba(88, 28, 135, 0.38), rgba(10, 2, 18, 0.92));
-  box-shadow: 0 30px 100px rgba(70, 0, 120, 0.55);
-  padding: 26px;
-  text-align: center;
-}
-
-.profileImage {
-  width: 100%;
-  max-width: 430px;
-  border-radius: 32px;
-  display: block;
-  margin: 0 auto;
-  box-shadow: 0 0 55px rgba(168, 85, 247, 0.25);
-}
-
-.profileInfo h2 {
-  font-size: 34px;
-  margin: 24px 0 8px;
-}
-
-.profileInfo p {
-  color: #e9d5ff;
-  margin: 0 0 8px;
-}
-
-.section {
-  padding: 86px 8%;
-}
-
-.dark {
-  background: #0d0618;
-}
-
-.sectionHeader {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 28px;
-}
-
-.sectionHeader svg {
-  color: #c084fc;
-  width: 42px;
-  height: 42px;
-}
-
-.section h2 {
-  font-size: clamp(32px, 5vw, 52px);
-  line-height: 1;
-  letter-spacing: -2px;
-  margin: 10px 0 0;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-.card, .steps div, .rulesPanel, .mascotPanel, .contact {
-  border: 1px solid rgba(216, 180, 254, 0.18);
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.045);
-  padding: 30px;
-}
-
-.card svg, .steps svg {
-  color: #c084fc;
-  width: 34px;
-  height: 34px;
-}
-
-.card h3 {
-  font-size: 27px;
-  margin: 20px 0 8px;
-}
-
-.card p, .steps p, .rulesPanel li, .contact p, .mascotPanel p {
-  color: #e9d5ff;
-  line-height: 1.6;
-}
-
-.card span {
-  display: inline-block;
-  margin-top: 18px;
-  padding: 9px 12px;
-  border-radius: 999px;
-  background: rgba(168, 85, 247, 0.18);
-  color: #f3e8ff;
-  font-weight: 800;
-}
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-
-.steps h3 {
-  margin-bottom: 6px;
-}
-
-.split {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 24px;
-  align-items: stretch;
-}
-
-.rulesPanel ul {
-  margin: 24px 0 0;
-  padding-left: 22px;
-  font-size: 18px;
-}
+import React, { useEffect, useState } from 'react'
+import { createRoot } from 'react-dom/client'
+import { Package, Video, ShieldCheck, Truck, Sparkles, Ghost, Mail, ChevronDown, CreditCard, Lock, ShoppingCart } from 'lucide-react'
+import roomGhost from './assets/room-ghost.png'
+import fullGhost from './assets/full-ghost.png'
+import blackBoltImg from './assets/packs/black-bolt.svg'
+import whiteFlareImg from './assets/packs/white-flare.svg'
+import destinedRivalsImg from './assets/packs/destined-rivals.svg'
+import siteLogo from './assets/orion-logo.png'
+import './style.css'
+
+const packs = [
+  { name: 'Black Bolt', status: 'Test stock soon', note: 'Opened live • Zekrom chase energy', image: blackBoltImg },
+  { name: 'White Flare', status: 'Wanted next', note: 'Ghost-type IR vibes • Ghost pick', image: whiteFlareImg },
+  { name: 'Destined Rivals', status: 'Coming later', note: 'New packs added before streams', image: destinedRivalsImg },
+]
+
+function getPage() {
+  const hash = window.location.hash.replace('#/', '')
+  return hash.split('?')[0] || 'home'
+}
+
+function App() {
+  const [page, setPage] = useState(getPage())
+
+  useEffect(() => {
+    const onHashChange = () => setPage(getPage())
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
+
+  return (
+    <main>
+      <Navbar />
+
+      {page === 'home' && <HomePage />}
+      {page === 'rip-and-ship' && <RipShipPage />}
+      {page === 'booster-packs' && <BoosterPacksPage />}
+      {page === 'rules' && <RulesPage />}
+      {page === 'about-me' && <AboutPage />}
+      {page === 'delivery-fee' && <DeliveryFeePage />}
+      {page === 'contact' && <ContactPage />}
+      {page === 'checkout' && <CheckoutPage />}
+    </main>
+  )
+}
+
+function Navbar() {
+  return (
+    <nav className="navbar">
+      <a href="#/home" className="logoLink">
+        <img src={siteLogo} alt="Orion Pulls logo" className="navLogoImg" />
+        <span>Orion Pulls</span>
+      </a>
+
+      <div className="navLinks">
+        <a href="#/home">Home</a>
+
+        <div className="navDropdown">
+          <a href="#/rip-and-ship">Rip&Ship <ChevronDown size={14} /></a>
+          <div className="dropdownMenu">
+            <a href="#/rip-and-ship">How It Works</a>
+            <a href="#/booster-packs">Booster Packs</a>
+          </div>
+        </div>
+
+        <a href="#/rules">Rules</a>
+        <a href="#/about-me">About Me</a>
+        <a href="#/delivery-fee">Delivery Fee</a>
+        <a href="#/contact">Contact</a>
+      </div>
+    </nav>
+  )
+}
+
+function HomePage() {
+  return (
+    <section className="hero page">
+      <div className="heroText">
+        <img src={siteLogo} alt="Orion Pulls logo" className="heroLogo" />
+        <p className="eyebrow">Orion Pulls</p>
+        <h1>Pokémon Rip & Ship from the Netherlands</h1>
+        <p className="subtitle">
+          Claim packs, watch them opened live, and get your hits sleeved + toploaded before shipping.
+        </p>
+        <div className="buttons">
+          <a href="#/booster-packs" className="button primary"><Package size={18} /> View Packs</a>
+          <a href="#/rip-and-ship" className="button secondary">How It Works</a>
+        </div>
+      </div>
+
+      <div className="profileCard">
+        <img src={roomGhost} alt="Purple ghost mascot in a moonlit room" className="profileImage" />
+        <div className="profileInfo">
+          <h2>Orion Pulls</h2>
+          <p>Open. Pull. Grade. Repeat.</p>
+        </div>
+      </div>
+    </section>
+  )
+}
 
-.rulesPanel li {
-  margin-bottom: 12px;
-}
-
-.mascotPanel {
-  text-align: center;
-  background:
-    radial-gradient(circle at 50% 30%, rgba(168, 85, 247, 0.35), transparent 42%),
-    rgba(255, 255, 255, 0.045);
-}
-
-.mascotPanel img {
-  width: min(360px, 100%);
-  border-radius: 30px;
-  box-shadow: 0 0 55px rgba(168, 85, 247, 0.28);
-}
-
-.mascotPanel h3 {
-  font-size: 26px;
-  margin: 24px 0 8px;
-}
-
-.contact {
-  text-align: center;
-  max-width: 880px;
-  margin: 0 auto 80px;
-  background:
-    linear-gradient(145deg, rgba(107, 33, 168, 0.32), rgba(255, 255, 255, 0.04));
-}
-
-.contact p {
-  max-width: 650px;
-  margin: 20px auto 0;
-  font-size: 18px;
-}
-
-@media (max-width: 900px) {
-  .hero, .grid, .steps, .split {
-    grid-template-columns: 1fr;
-  }
-
-  .hero {
-    min-height: auto;
-    padding-top: 52px;
-  }
-
-  h1 {
-    letter-spacing: -2px;
-  }
-
-  .section {
-    padding: 62px 6%;
-  }
-
-  .profileCard {
-    padding: 18px;
-  }
-}
-
-
-.packCard {
-  overflow: hidden;
-  padding: 0;
-}
-
-.packImage {
-  display: block;
-  width: 72%;
-  max-width: 220px;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(216, 180, 254, 0.14);
-  border-radius: 20px;
-  margin: 22px auto 0;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.28);
-}
-
-.packInfo {
-  padding: 20px 24px 28px;
-}
-
-.packTitleRow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.packTitleRow h3 {
-  margin: 0;
-}
-
-.packTitleRow svg {
-  color: #c084fc;
-  width: 28px;
-  height: 28px;
-  flex: 0 0 auto;
-}
-
-
-.shippingOptions {
-  background:
-    radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.22), transparent 30%),
-    #07020d;
-}
-
-.shippingGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
-}
-
-.shippingCard {
-  border: 1px solid rgba(216, 180, 254, 0.18);
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.045);
-  padding: 32px;
-}
-
-.shippingCard h3 {
-  font-size: 30px;
-  margin: 0 0 12px;
-}
-
-.shippingCard p {
-  color: #e9d5ff;
-  line-height: 1.6;
-  font-size: 18px;
-  margin: 0;
-}
-
-@media (max-width: 900px) {
-  .shippingGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 28px;
-  padding: 18px 8%;
-  background: rgba(7, 2, 13, 0.82);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(216, 180, 254, 0.14);
-}
-
-.logoLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-}
-
-.logoMark {
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(168, 85, 247, 0.2);
-  border: 1px solid rgba(216, 180, 254, 0.22);
-}
-
-.navLinks {
-  display: flex;
-  align-items: center;
-  gap: 26px;
-}
-
-.navLinks a {
-  color: #f3e8ff;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 15px;
-}
-
-.navLinks a:hover {
-  color: #ffffff;
-}
-
-.navDropdown {
-  position: relative;
-  padding: 10px 0;
-}
-
-.dropdownMenu {
-  position: absolute;
-  top: 38px;
-  left: 0;
-  min-width: 170px;
-  display: none;
-  padding: 10px;
-  border-radius: 18px;
-  background: rgba(20, 8, 35, 0.96);
-  border: 1px solid rgba(216, 180, 254, 0.18);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
-}
-
-.dropdownMenu a {
-  display: block;
-  padding: 11px 12px;
-  border-radius: 12px;
-}
-
-.dropdownMenu a:hover {
-  background: rgba(168, 85, 247, 0.2);
-}
-
-.navDropdown:hover .dropdownMenu {
-  display: block;
-}
-
-.aboutBox {
-  border: 1px solid rgba(216, 180, 254, 0.18);
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.045);
-  padding: 32px;
-  max-width: 900px;
-}
-
-.aboutBox p {
-  color: #e9d5ff;
-  line-height: 1.7;
-  font-size: 18px;
-  margin: 0;
-}
-
-@media (max-width: 900px) {
-  .navbar {
-    position: relative;
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 18px 6%;
-  }
-
-  .navLinks {
-    flex-wrap: wrap;
-    gap: 14px 20px;
-  }
-
-  .dropdownMenu {
-    position: static;
-    display: block;
-    margin-top: 8px;
-  }
-}
+function RipShipPage() {
+  return (
+    <section className="pageContent">
+      <p className="smallTitle">Simple & transparent</p>
+      <h1>How It Works</h1>
+      <p className="pageIntro">Every order should be clear, fair, and easy to follow live.</p>
+
+      <div className="steps">
+        <div><Package /><h3>1. Claim a pack</h3><p>Choose a pack before or during the stream.</p></div>
+        <div><Video /><h3>2. Ripped live</h3><p>Your pack is opened on camera, not off-screen.</p></div>
+        <div><ShieldCheck /><h3>3. Hits sleeved + toploaded</h3><p>Hits are sleeved and toploaded live.</p></div>
+        <div><Truck /><h3>4. Shipped safely</h3><p>Your cards are packed safely and shipped from the Netherlands.</p></div>
+      </div>
+
+      <div className="buttons">
+        <a className="button primary" href="#/booster-packs"><Package size={18} /> View Booster Packs</a>
+        <a className="button secondary" href="#/rules">Read Rules</a>
+      </div>
+    </section>
+  )
+}
+
+function RulesPage() {
+  return (
+    <section className="pageContent">
+      <p className="smallTitle">Please read first</p>
+      <h1>Rules</h1>
+      <p className="pageIntro">
+        These rules keep every rip clear, fair, and organized.
+      </p>
+
+      <div className="rulesPanel standalone">
+        <h2>Stream Rules</h2>
+        <ul>
+          <li>Packs are opened live on stream.</li>
+          <li>No refunds after a pack has been opened.</li>
+          <li>Pulls are random. Bad packs can happen.</li>
+          <li>Hits are sleeved and toploaded live.</li>
+          <li>Shipping is paid separately unless stated otherwise.</li>
+          <li>You can choose to ship now or hold your cards for up to 2 months.</li>
+          <li>Orders are handled manually while this is still being tested.</li>
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+function BoosterPacksPage() {
+  return (
+    <section className="pageContent">
+      <p className="smallTitle">Current Stream Stock</p>
+      <h1>Booster Packs</h1>
+      <p className="pageIntro">These are the packs planned for rip & ship streams.</p>
+
+      <div className="grid">
+        {packs.map((pack) => (
+          <div className="card packCard" key={pack.name}>
+            <img src={pack.image} alt={pack.name + ' pack art'} className="packImage" />
+            <div className="packInfo">
+              <div className="packTitleRow">
+                <Package />
+                <h3>{pack.name}</h3>
+              </div>
+              <p>{pack.note}</p>
+              <span>{pack.status}</span>
+              <a className="miniButton" href={`#/checkout?pack=${encodeURIComponent(pack.name)}`}>
+                <ShoppingCart size={16} /> Select Pack
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function AboutPage() {
+  return (
+    <section className="pageContent splitPage">
+      <div>
+        <p className="smallTitle">About Me</p>
+        <h1>About Orion Pulls</h1>
+        <p className="pageIntro">
+          Orion Pulls is a small Pokémon card rip & ship project from the Netherlands. The goal is to keep openings clear, fair, and fun.
+        </p>
+        <div className="aboutBox">
+          <p>
+            Packs are opened live, hits are sleeved and toploaded, and cards are packed safely before shipping. This site is still being built step by step, so everything starts simple and organized.
+          </p>
+        </div>
+      </div>
+
+      <div className="mascotPanel">
+        <img src={fullGhost} alt="Full body purple ghost mascot" />
+        <h3>Purple Ghost Mascot</h3>
+        <p>Cute, mischievous, spooky, and ready for big pulls.</p>
+      </div>
+    </section>
+  )
+}
+
+function DeliveryFeePage() {
+  return (
+    <section className="pageContent">
+      <p className="smallTitle">After your packs are opened</p>
+      <h1>Delivery Fee</h1>
+      <p className="pageIntro">Choose whether you want your cards shipped now or held for combined shipping.</p>
+
+      <div className="shippingGrid">
+        <div className="shippingCard">
+          <h3>Ship Now</h3>
+          <p>Pay shipping after the stream and your cards will be packed safely and shipped from the Netherlands.</p>
+        </div>
+
+        <div className="shippingCard">
+          <h3>Hold My Cards</h3>
+          <p>Your cards can be held safely for up to 2 months so you can combine multiple stream orders into one shipment.</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+
+function CheckoutPage() {
+  const selectedPack = new URLSearchParams(window.location.hash.split('?')[1] || '').get('pack') || 'Booster Pack'
+  const [quantity, setQuantity] = useState(1)
+  const [shippingOption, setShippingOption] = useState('ship-now')
+
+  const decreaseQuantity = () => setQuantity((current) => Math.max(1, current - 1))
+  const increaseQuantity = () => setQuantity((current) => current + 1)
+
+  return (
+    <section className="checkoutShell">
+      <div className="checkoutFormSide">
+        <a href="#/booster-packs" className="backLink">← Back to packs</a>
+        <h1 className="checkoutBrandTitle">Orion Pulls</h1>
+
+        <div className="checkoutBlock">
+          <div className="checkoutBlockHeader">
+            <h2>Contact</h2>
+            <a href="#/contact">Need help?</a>
+          </div>
+          <input className="checkoutInput" placeholder="E-mail" />
+          <label className="checkboxLine">
+            <input type="checkbox" />
+            <span>Send me updates about streams and pack drops</span>
+          </label>
+        </div>
+
+        <div className="checkoutBlock">
+          <h2>Delivery</h2>
+          <select className="checkoutInput">
+            <option>Netherlands</option>
+            <option>Belgium</option>
+            <option>Germany</option>
+          </select>
+
+          <div className="twoColumn">
+            <input className="checkoutInput" placeholder="First name" />
+            <input className="checkoutInput" placeholder="Last name" />
+          </div>
+
+          <input className="checkoutInput" placeholder="Username / TikTok name" />
+          <input className="checkoutInput" placeholder="Address" />
+          <input className="checkoutInput" placeholder="Apartment, suite, etc. (optional)" />
+
+          <div className="twoColumn">
+            <input className="checkoutInput" placeholder="Postcode" />
+            <input className="checkoutInput" placeholder="City" />
+          </div>
+
+          <input className="checkoutInput" placeholder="Phone number (optional)" />
+        </div>
+
+        <div className="checkoutBlock">
+          <h2>Shipping Method</h2>
+          <div className="shippingChoice checkoutStyle">
+            <label>
+              <input 
+                type="radio" 
+                name="shipping" 
+                checked={shippingOption === 'ship-now'}
+                onChange={() => setShippingOption('ship-now')}
+              />
+              <span>
+                <strong>Ship Now</strong>
+                <small>Pay shipping and send after the stream.</small>
+              </span>
+            </label>
+
+            <label>
+              <input 
+                type="radio" 
+                name="shipping" 
+                checked={shippingOption === 'hold'}
+                onChange={() => setShippingOption('hold')}
+              />
+              <span>
+                <strong>Hold My Cards</strong>
+                <small>Hold safely up to 2 months to combine shipping.</small>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div className="checkoutBlock">
+          <h2>Payment</h2>
+          <p className="mutedText">Payment is not connected yet. This is a checkout preview.</p>
+          <button className="payButton">
+            <CreditCard size={18} /> Continue to Payment
+          </button>
+        </div>
+      </div>
+
+      <div className="checkoutSummarySide">
+        <div className="summaryProduct">
+          <div className="summaryThumb">
+            <Package size={30} />
+            <span>{quantity}</span>
+          </div>
+
+          <div className="summaryProductInfo">
+            <strong>{selectedPack}</strong>
+            <p>Rip & Ship Booster Pack</p>
+          </div>
+
+          <div className="summaryProductActions">
+            <div className="quantityRow">
+              <button type="button" onClick={decreaseQuantity}>-</button>
+              <span>{quantity}</span>
+              <button type="button" onClick={increaseQuantity}>+</button>
+            </div>
+            <div className="summaryPrice">€ --,--</div>
+          </div>
+        </div>
+
+        <div className="summaryLine">
+          <span>Subtotal</span>
+          <strong>€ --,--</strong>
+        </div>
+
+        <div className="summaryLine">
+          <span>Shipping</span>
+          <strong>{shippingOption === 'hold' ? 'Hold for later' : 'Calculated later'}</strong>
+        </div>
+
+        <div className="summaryTotal">
+          <span>Total</span>
+          <strong>€ --,--</strong>
+        </div>
+
+        <div className="secureNote">
+          <Lock size={18} />
+          <span>Packs are opened live. No refunds after ripping.</span>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+
+function ContactPage() {
+  return (
+    <section className="pageContent contactPage">
+      <p className="smallTitle">Questions first</p>
+      <h1>Contact</h1>
+      <p className="pageIntro">
+        Contact details can be added here later. For now, check the booster packs and rules first before claiming anything.
+      </p>
+      <div className="buttons center">
+        <a className="button primary" href="#/booster-packs"><Package size={18} /> View Booster Packs</a>
+        <a className="button secondary" href="#/rip-and-ship">Check Rules</a>
+      </div>
+    </section>
+  )
+}
+
+createRoot(document.getElementById('root')).render(<App />)

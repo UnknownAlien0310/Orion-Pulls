@@ -1,15 +1,20 @@
-{
-  "scripts": {
-    "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "lucide-react": "latest"
-  },
-  "devDependencies": {}
-}
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="840" viewBox="0 0 600 840" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="50%" stop-color="#581c87"/>
+      <stop offset="100%" stop-color="#f5f3ff"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="35%" r="52%">
+      <stop offset="0%" stop-color="#fdf2f8" stop-opacity="0.98"/>
+      <stop offset="60%" stop-color="#e9d5ff" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="840" rx="36" fill="url(#bg)"/>
+  <circle cx="300" cy="285" r="200" fill="url(#glow)"/>
+  <path d="M300 145C345 210 395 245 455 270C390 300 345 350 300 430C255 350 210 300 145 270C205 245 255 210 300 145Z" fill="#ffffff" fill-opacity="0.96"/>
+  <circle cx="300" cy="285" r="28" fill="#fdf2f8"/>
+  <text x="50%" y="680" text-anchor="middle" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="#faf5ff">White Flare</text>
+  <text x="50%" y="740" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#e9d5ff">Temporary pack image</text>
+</svg>
