@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Package, Video, ShieldCheck, Truck, Sparkles, Ghost, Mail, ChevronDown } from 'lucide-react'
+import { Package, Video, ShieldCheck, Truck, Sparkles, Ghost, Mail, ChevronDown, CreditCard, Lock, ShoppingCart } from 'lucide-react'
 import roomGhost from './assets/room-ghost.png'
 import fullGhost from './assets/full-ghost.png'
 import blackBoltImg from './assets/packs/black-bolt.svg'
@@ -40,6 +40,7 @@ function App() {
       {page === 'about-me' && <AboutPage />}
       {page === 'delivery-fee' && <DeliveryFeePage />}
       {page === 'contact' && <ContactPage />}
+      {page === 'checkout' && <CheckoutPage />}
     </main>
   )
 }
@@ -164,6 +165,9 @@ function BoosterPacksPage() {
               </div>
               <p>{pack.note}</p>
               <span>{pack.status}</span>
+              <a className="miniButton" href={`#/checkout?pack=${encodeURIComponent(pack.name)}`}>
+                <ShoppingCart size={16} /> Select Pack
+              </a>
             </div>
           </div>
         ))}
@@ -218,6 +222,86 @@ function DeliveryFeePage() {
     </section>
   )
 }
+
+
+function CheckoutPage() {
+  const selectedPack = new URLSearchParams(window.location.hash.split('?')[1] || '').get('pack') || 'Booster Pack'
+
+  return (
+    <section className="pageContent checkoutPage">
+      <p className="smallTitle">Order Preview</p>
+      <h1>Pay Screen</h1>
+      <p className="pageIntro">
+        This is the checkout preview for rip & ship orders. Real payment connection can be added later.
+      </p>
+
+      <div className="checkoutLayout">
+        <div className="checkoutPanel">
+          <h2>Your Pack</h2>
+
+          <label className="fieldLabel">Selected product</label>
+          <div className="fakeInput">{selectedPack}</div>
+
+          <label className="fieldLabel">Quantity</label>
+          <div className="quantityRow">
+            <button>-</button>
+            <span>1</span>
+            <button>+</button>
+          </div>
+
+          <label className="fieldLabel">Shipping choice</label>
+          <div className="shippingChoice">
+            <label>
+              <input type="radio" name="shipping" defaultChecked />
+              <span>
+                <strong>Ship Now</strong>
+                <small>Pay shipping and send after the stream.</small>
+              </span>
+            </label>
+
+            <label>
+              <input type="radio" name="shipping" />
+              <span>
+                <strong>Hold My Cards</strong>
+                <small>Hold safely up to 2 months to combine shipping.</small>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div className="orderSummary">
+          <h2>Order Summary</h2>
+          <div className="summaryLine">
+            <span>{selectedPack}</span>
+            <strong>€--,--</strong>
+          </div>
+          <div className="summaryLine">
+            <span>Shipping</span>
+            <strong>Choose option</strong>
+          </div>
+          <div className="summaryTotal">
+            <span>Total</span>
+            <strong>Calculated later</strong>
+          </div>
+
+          <div className="secureNote">
+            <Lock size={18} />
+            <span>Payment is not connected yet. This is a preview screen.</span>
+          </div>
+
+          <button className="payButton">
+            <CreditCard size={18} /> Continue to Payment
+          </button>
+
+          <p className="checkoutDisclaimer">
+            By continuing, buyers should understand packs are opened live and refunds are not possible after ripping.
+          </p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 
 function ContactPage() {
   return (
