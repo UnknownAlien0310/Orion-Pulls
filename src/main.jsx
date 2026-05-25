@@ -17,7 +17,7 @@ const packs = [
 
 function getPage() {
   const hash = window.location.hash.replace('#/', '')
-  return hash || 'home'
+  return hash.split('?')[0] || 'home'
 }
 
 function App() {
