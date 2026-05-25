@@ -321,19 +321,19 @@ function CheckoutPage() {
             <Package size={30} />
             <span>{quantity}</span>
           </div>
-          <div>
+
+          <div className="summaryProductInfo">
             <strong>{selectedPack}</strong>
             <p>Rip & Ship Booster Pack</p>
           </div>
-          <div className="summaryPrice">€ --,--</div>
-        </div>
 
-        <div className="quantityCheckoutLine">
-          <span>Quantity</span>
-          <div className="quantityRow">
-            <button type="button" onClick={decreaseQuantity}>-</button>
-            <span>{quantity}</span>
-            <button type="button" onClick={increaseQuantity}>+</button>
+          <div className="summaryProductActions">
+            <div className="quantityRow">
+              <button type="button" onClick={decreaseQuantity}>-</button>
+              <span>{quantity}</span>
+              <button type="button" onClick={increaseQuantity}>+</button>
+            </div>
+            <div className="summaryPrice">€ --,--</div>
           </div>
         </div>
 

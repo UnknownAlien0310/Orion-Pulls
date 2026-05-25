@@ -892,3 +892,45 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* v21: move quantity controls next to selected product in order summary */
+.checkoutSummarySide .summaryProduct {
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #dfd5ea;
+  margin-bottom: 10px;
+}
+
+.summaryProductInfo {
+  min-width: 0;
+}
+
+.summaryProductActions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.summaryProductActions .summaryPrice {
+  min-width: 74px;
+  text-align: right;
+}
+
+.quantityCheckoutLine {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .checkoutSummarySide .summaryProduct {
+    grid-template-columns: auto 1fr;
+  }
+
+  .summaryProductActions {
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
