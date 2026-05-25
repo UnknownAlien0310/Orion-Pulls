@@ -1,6 +1,6 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { Package, Video, ShieldCheck, Truck, Sparkles, Ghost, MessageCircle } from 'lucide-react'
+import { Package, Video, ShieldCheck, Truck, Sparkles, Ghost } from 'lucide-react'
 import roomGhost from './assets/room-ghost.png'
 import fullGhost from './assets/full-ghost.png'
 import blackBoltImg from './assets/packs/black-bolt.svg'
@@ -124,14 +124,14 @@ function App() {
       </section>
 
       <section className="section contact">
-        <p className="smallTitle">Ready to test?</p>
-        <h2>Claim a Pack</h2>
+        <p className="smallTitle">Ready to join?</p>
+        <h2>Start With the Packs</h2>
         <p>
-          For the first test streams, claims are handled through TikTok DM. Full checkout can be added later when the system is ready.
+          Check the current pack list first, then read the rules before claiming anything. This keeps every rip clear, fair, and organized.
         </p>
         <div className="buttons center">
-          <a className="button primary" href="https://www.tiktok.com/" target="_blank">
-            <MessageCircle size={18} /> DM on TikTok
+          <a className="button primary" href="#packs">
+            <Package size={18} /> View Available Packs
           </a>
           <a className="button secondary" href="#rules">Check Rules</a>
         </div>
