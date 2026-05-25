@@ -934,3 +934,138 @@ h1 {
     width: 100%;
   }
 }
+
+
+/* v22 shopping cart */
+.cartNavLink {
+  position: relative;
+}
+
+.cartNavLink strong {
+  position: absolute;
+  top: -12px;
+  right: -14px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #a855f7;
+  color: white;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.miniButton {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.secondaryMini {
+  margin-left: 8px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.emptyCart {
+  max-width: 620px;
+  border: 1px solid rgba(216, 180, 254, 0.18);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.045);
+  padding: 34px;
+  text-align: center;
+}
+
+.emptyCart svg {
+  color: #c084fc;
+}
+
+.emptyCart p {
+  color: #e9d5ff;
+}
+
+.cartLayout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.cartItems,
+.cartSummary {
+  border: 1px solid rgba(216, 180, 254, 0.18);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.045);
+  padding: 24px;
+}
+
+.cartItem {
+  display: grid;
+  grid-template-columns: 86px 1fr auto;
+  gap: 18px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(216, 180, 254, 0.14);
+}
+
+.cartItem:last-child {
+  border-bottom: 0;
+}
+
+.cartItem img {
+  width: 86px;
+  height: 112px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(216, 180, 254, 0.16);
+}
+
+.cartItemInfo h3 {
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+
+.cartItemInfo p {
+  margin: 0 0 10px;
+  color: #e9d5ff;
+}
+
+.cartItemInfo button {
+  border: 0;
+  background: transparent;
+  color: #f0abfc;
+  font-weight: 900;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cartSummary h2 {
+  margin: 0 0 18px;
+}
+
+.fullButton {
+  width: 100%;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+@media (max-width: 900px) {
+  .cartLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .cartItem {
+    grid-template-columns: 70px 1fr;
+  }
+
+  .cartItem .quantityRow {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  .cartItem img {
+    width: 70px;
+    height: 92px;
+  }
+}

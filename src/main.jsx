@@ -22,6 +22,13 @@ function getPage() {
 
 function App() {
   const [page, setPage] = useState(getPage())
+  const [cartItems, setCartItems] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('orionCart')) || []
+    } catch {
+      return []
+    }
+  })
 
   useEffect(() => {
     const onHashChange = () => setPage(getPage())
@@ -29,13 +36,46 @@ function App() {
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
 
+  useEffect(() => {
+    localStorage.setItem('orionCart', JSON.stringify(cartItems))
+  }, [cartItems])
+
+  const addToCart = (pack) => {
+    setCartItems((items) => {
+      const existing = items.find((item) => item.name === pack.name)
+      if (existing) {
+        return items.map((item) =>
+          item.name === pack.name ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      }
+      return [...items, { ...pack, quantity: 1 }]
+    })
+    window.location.hash = '#/cart'
+  }
+
+  const updateCartQuantity = (packName, change) => {
+    setCartItems((items) =>
+      items
+        .map((item) =>
+          item.name === packName ? { ...item, quantity: Math.max(1, item.quantity + change) } : item
+        )
+    )
+  }
+
+  const removeFromCart = (packName) => {
+    setCartItems((items) => items.filter((item) => item.name !== packName))
+  }
+
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0)
+
   return (
     <main>
-      <Navbar />
+      <Navbar cartCount={cartCount} />
 
       {page === 'home' && <HomePage />}
       {page === 'rip-and-ship' && <RipShipPage />}
-      {page === 'booster-packs' && <BoosterPacksPage />}
+      {page === 'booster-packs' && <BoosterPacksPage addToCart={addToCart} />}
+      {page === 'cart' && <CartPage cartItems={cartItems} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart} />}
       {page === 'rules' && <RulesPage />}
       {page === 'about-me' && <AboutPage />}
       {page === 'delivery-fee' && <DeliveryFeePage />}
@@ -45,7 +85,8 @@ function App() {
   )
 }
 
-function Navbar() {
+
+function Navbar({ cartCount }) {
   return (
     <nav className="navbar">
       <a href="#/home" className="logoLink">
@@ -68,6 +109,11 @@ function Navbar() {
         <a href="#/about-me">About Me</a>
         <a href="#/delivery-fee">Delivery Fee</a>
         <a href="#/contact">Contact</a>
+        <a href="#/cart" className="cartNavLink">
+          <ShoppingCart size={18} />
+          <span>Cart</span>
+          {cartCount > 0 && <strong>{cartCount}</strong>}
+        </a>
       </div>
     </nav>
   )
@@ -147,7 +193,7 @@ function RulesPage() {
   )
 }
 
-function BoosterPacksPage() {
+function BoosterPacksPage({ addToCart }) {
   return (
     <section className="pageContent">
       <p className="smallTitle">Current Stream Stock</p>
@@ -165,8 +211,11 @@ function BoosterPacksPage() {
               </div>
               <p>{pack.note}</p>
               <span>{pack.status}</span>
-              <a className="miniButton" href={`#/checkout?pack=${encodeURIComponent(pack.name)}`}>
-                <ShoppingCart size={16} /> Select Pack
+              <button className="miniButton" type="button" onClick={() => addToCart(pack)}>
+                <ShoppingCart size={16} /> Add to Cart
+              </button>
+              <a className="miniButton secondaryMini" href={`#/checkout?pack=${encodeURIComponent(pack.name)}`}>
+                Buy Now
               </a>
             </div>
           </div>
@@ -219,6 +268,69 @@ function DeliveryFeePage() {
           <p>Your cards can be held safely for up to 2 months so you can combine multiple stream orders into one shipment.</p>
         </div>
       </div>
+    </section>
+  )
+}
+
+
+
+function CartPage({ cartItems, updateCartQuantity, removeFromCart }) {
+  return (
+    <section className="pageContent cartPage">
+      <p className="smallTitle">Shopping Cart</p>
+      <h1>Your Cart</h1>
+      <p className="pageIntro">Check your packs before going to the checkout preview.</p>
+
+      {cartItems.length === 0 ? (
+        <div className="emptyCart">
+          <ShoppingCart size={42} />
+          <h2>Your cart is empty</h2>
+          <p>Add booster packs first before checking out.</p>
+          <a className="button primary" href="#/booster-packs">View Booster Packs</a>
+        </div>
+      ) : (
+        <div className="cartLayout">
+          <div className="cartItems">
+            {cartItems.map((item) => (
+              <div className="cartItem" key={item.name}>
+                <img src={item.image} alt={item.name + ' pack'} />
+                <div className="cartItemInfo">
+                  <h3>{item.name}</h3>
+                  <p>{item.note}</p>
+                  <button type="button" onClick={() => removeFromCart(item.name)}>Remove</button>
+                </div>
+                <div className="quantityRow">
+                  <button type="button" onClick={() => updateCartQuantity(item.name, -1)}>-</button>
+                  <span>{item.quantity}</span>
+                  <button type="button" onClick={() => updateCartQuantity(item.name, 1)}>+</button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="cartSummary">
+            <h2>Cart Summary</h2>
+            <div className="summaryLine">
+              <span>Items</span>
+              <strong>{cartItems.reduce((total, item) => total + item.quantity, 0)}</strong>
+            </div>
+            <div className="summaryLine">
+              <span>Subtotal</span>
+              <strong>€ --,--</strong>
+            </div>
+            <div className="summaryLine">
+              <span>Shipping</span>
+              <strong>Calculated later</strong>
+            </div>
+            <a className="button primary fullButton" href={`#/checkout?pack=${encodeURIComponent(cartItems.map(item => `${item.name} x${item.quantity}`).join(', '))}`}>
+              Continue to Checkout
+            </a>
+            <a className="button secondary fullButton" href="#/booster-packs">
+              Add More Packs
+            </a>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
