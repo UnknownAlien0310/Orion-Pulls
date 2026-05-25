@@ -226,33 +226,65 @@ function DeliveryFeePage() {
 
 function CheckoutPage() {
   const selectedPack = new URLSearchParams(window.location.hash.split('?')[1] || '').get('pack') || 'Booster Pack'
+  const [quantity, setQuantity] = useState(1)
+  const [shippingOption, setShippingOption] = useState('ship-now')
+
+  const decreaseQuantity = () => setQuantity((current) => Math.max(1, current - 1))
+  const increaseQuantity = () => setQuantity((current) => current + 1)
 
   return (
-    <section className="pageContent checkoutPage">
-      <p className="smallTitle">Order Preview</p>
-      <h1>Pay Screen</h1>
-      <p className="pageIntro">
-        This is the checkout preview for rip & ship orders. Real payment connection can be added later.
-      </p>
+    <section className="checkoutShell">
+      <div className="checkoutFormSide">
+        <a href="#/booster-packs" className="backLink">← Back to packs</a>
+        <h1 className="checkoutBrandTitle">Orion Pulls</h1>
 
-      <div className="checkoutLayout">
-        <div className="checkoutPanel">
-          <h2>Your Pack</h2>
+        <div className="checkoutBlock">
+          <div className="checkoutBlockHeader">
+            <h2>Contact</h2>
+            <a href="#/contact">Need help?</a>
+          </div>
+          <input className="checkoutInput" placeholder="E-mail" />
+          <label className="checkboxLine">
+            <input type="checkbox" />
+            <span>Send me updates about streams and pack drops</span>
+          </label>
+        </div>
 
-          <label className="fieldLabel">Selected product</label>
-          <div className="fakeInput">{selectedPack}</div>
+        <div className="checkoutBlock">
+          <h2>Delivery</h2>
+          <select className="checkoutInput">
+            <option>Netherlands</option>
+            <option>Belgium</option>
+            <option>Germany</option>
+          </select>
 
-          <label className="fieldLabel">Quantity</label>
-          <div className="quantityRow">
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
+          <div className="twoColumn">
+            <input className="checkoutInput" placeholder="First name" />
+            <input className="checkoutInput" placeholder="Last name" />
           </div>
 
-          <label className="fieldLabel">Shipping choice</label>
-          <div className="shippingChoice">
+          <input className="checkoutInput" placeholder="Username / TikTok name" />
+          <input className="checkoutInput" placeholder="Address" />
+          <input className="checkoutInput" placeholder="Apartment, suite, etc. (optional)" />
+
+          <div className="twoColumn">
+            <input className="checkoutInput" placeholder="Postcode" />
+            <input className="checkoutInput" placeholder="City" />
+          </div>
+
+          <input className="checkoutInput" placeholder="Phone number (optional)" />
+        </div>
+
+        <div className="checkoutBlock">
+          <h2>Shipping Method</h2>
+          <div className="shippingChoice checkoutStyle">
             <label>
-              <input type="radio" name="shipping" defaultChecked />
+              <input 
+                type="radio" 
+                name="shipping" 
+                checked={shippingOption === 'ship-now'}
+                onChange={() => setShippingOption('ship-now')}
+              />
               <span>
                 <strong>Ship Now</strong>
                 <small>Pay shipping and send after the stream.</small>
@@ -260,7 +292,12 @@ function CheckoutPage() {
             </label>
 
             <label>
-              <input type="radio" name="shipping" />
+              <input 
+                type="radio" 
+                name="shipping" 
+                checked={shippingOption === 'hold'}
+                onChange={() => setShippingOption('hold')}
+              />
               <span>
                 <strong>Hold My Cards</strong>
                 <small>Hold safely up to 2 months to combine shipping.</small>
@@ -269,33 +306,55 @@ function CheckoutPage() {
           </div>
         </div>
 
-        <div className="orderSummary">
-          <h2>Order Summary</h2>
-          <div className="summaryLine">
-            <span>{selectedPack}</span>
-            <strong>€--,--</strong>
-          </div>
-          <div className="summaryLine">
-            <span>Shipping</span>
-            <strong>Choose option</strong>
-          </div>
-          <div className="summaryTotal">
-            <span>Total</span>
-            <strong>Calculated later</strong>
-          </div>
-
-          <div className="secureNote">
-            <Lock size={18} />
-            <span>Payment is not connected yet. This is a preview screen.</span>
-          </div>
-
+        <div className="checkoutBlock">
+          <h2>Payment</h2>
+          <p className="mutedText">Payment is not connected yet. This is a checkout preview.</p>
           <button className="payButton">
             <CreditCard size={18} /> Continue to Payment
           </button>
+        </div>
+      </div>
 
-          <p className="checkoutDisclaimer">
-            By continuing, buyers should understand packs are opened live and refunds are not possible after ripping.
-          </p>
+      <div className="checkoutSummarySide">
+        <div className="summaryProduct">
+          <div className="summaryThumb">
+            <Package size={30} />
+            <span>{quantity}</span>
+          </div>
+          <div>
+            <strong>{selectedPack}</strong>
+            <p>Rip & Ship Booster Pack</p>
+          </div>
+          <div className="summaryPrice">€ --,--</div>
+        </div>
+
+        <div className="quantityCheckoutLine">
+          <span>Quantity</span>
+          <div className="quantityRow">
+            <button type="button" onClick={decreaseQuantity}>-</button>
+            <span>{quantity}</span>
+            <button type="button" onClick={increaseQuantity}>+</button>
+          </div>
+        </div>
+
+        <div className="summaryLine">
+          <span>Subtotal</span>
+          <strong>€ --,--</strong>
+        </div>
+
+        <div className="summaryLine">
+          <span>Shipping</span>
+          <strong>{shippingOption === 'hold' ? 'Hold for later' : 'Calculated later'}</strong>
+        </div>
+
+        <div className="summaryTotal">
+          <span>Total</span>
+          <strong>€ --,--</strong>
+        </div>
+
+        <div className="secureNote">
+          <Lock size={18} />
+          <span>Packs are opened live. No refunds after ripping.</span>
         </div>
       </div>
     </section>

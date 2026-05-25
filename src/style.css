@@ -625,3 +625,270 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+
+
+.productQuantityRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: end;
+}
+
+.productInput {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+}
+
+.quantityBox {
+  min-width: 160px;
+}
+
+.quantityLabel {
+  display: block;
+  margin: 0 0 8px;
+  color: #e9d5ff;
+  font-weight: 900;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+@media (max-width: 700px) {
+  .productQuantityRow {
+    grid-template-columns: 1fr;
+  }
+
+  .quantityBox {
+    min-width: 0;
+  }
+}
+
+
+/* v20 Shopify-style checkout */
+.checkoutShell {
+  min-height: calc(100vh - 74px);
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  background: #fbf9ff;
+  color: #12051f;
+}
+
+.checkoutFormSide {
+  padding: 52px 7vw 72px;
+  background: #ffffff;
+}
+
+.checkoutSummarySide {
+  padding: 64px 7vw 72px 42px;
+  background: #f4effa;
+  border-left: 1px solid #e7dff0;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: #6b21a8;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.checkoutBrandTitle {
+  color: #12051f;
+  font-size: clamp(38px, 5vw, 62px);
+  margin: 0 0 34px;
+  letter-spacing: -0.05em;
+}
+
+.checkoutBlock {
+  margin-bottom: 34px;
+}
+
+.checkoutBlock h2,
+.checkoutBlockHeader h2 {
+  color: #12051f;
+  font-size: 24px;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.checkoutBlockHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+
+.checkoutBlockHeader a {
+  color: #6b21a8;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.checkoutInput {
+  width: 100%;
+  height: 54px;
+  border: 1px solid #d8cde8;
+  border-radius: 12px;
+  padding: 0 14px;
+  font-size: 15px;
+  margin-bottom: 12px;
+  color: #12051f;
+  background: #ffffff;
+}
+
+.checkoutInput:focus {
+  outline: 2px solid #8b5cf6;
+  border-color: #8b5cf6;
+}
+
+.twoColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.checkboxLine {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #3b2a4b;
+  font-size: 14px;
+}
+
+.mutedText {
+  color: #6d5b7a;
+  margin: -6px 0 14px;
+}
+
+.shippingChoice.checkoutStyle label {
+  background: #ffffff;
+  border: 1px solid #d8cde8;
+  color: #12051f;
+}
+
+.shippingChoice.checkoutStyle small {
+  color: #6d5b7a;
+}
+
+.checkoutSummarySide .summaryProduct {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.summaryThumb {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #2e1065, #a855f7);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.summaryThumb span {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: #12051f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.summaryProduct strong {
+  display: block;
+  color: #12051f;
+  font-size: 16px;
+}
+
+.summaryProduct p {
+  margin: 4px 0 0;
+  color: #6d5b7a;
+  font-size: 14px;
+}
+
+.summaryPrice {
+  color: #12051f;
+  font-weight: 900;
+}
+
+.quantityCheckoutLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 0;
+  border-top: 1px solid #dfd5ea;
+  border-bottom: 1px solid #dfd5ea;
+  margin-bottom: 10px;
+}
+
+.quantityCheckoutLine > span {
+  color: #3b2a4b;
+  font-weight: 800;
+}
+
+.checkoutSummarySide .quantityRow {
+  background: #ffffff;
+  border: 1px solid #d8cde8;
+  color: #12051f;
+}
+
+.checkoutSummarySide .quantityRow button {
+  background: #7e22ce;
+  color: white;
+}
+
+.checkoutSummarySide .summaryLine,
+.checkoutSummarySide .summaryTotal {
+  color: #3b2a4b;
+  border-bottom: 1px solid #dfd5ea;
+}
+
+.checkoutSummarySide .summaryTotal {
+  color: #12051f;
+  font-size: 22px;
+  padding-top: 18px;
+}
+
+.checkoutSummarySide .secureNote {
+  background: #eadcf8;
+  color: #3b2a4b;
+}
+
+.checkoutFormSide .payButton {
+  background: #7e22ce;
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .checkoutShell {
+    grid-template-columns: 1fr;
+  }
+
+  .checkoutSummarySide {
+    border-left: 0;
+    border-top: 1px solid #e7dff0;
+    padding: 32px 6vw 48px;
+  }
+
+  .checkoutFormSide {
+    padding: 36px 6vw 40px;
+  }
+
+  .twoColumn {
+    grid-template-columns: 1fr;
+  }
+}
