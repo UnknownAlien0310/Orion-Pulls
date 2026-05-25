@@ -17,7 +17,29 @@ function App() {
 
   return (
     <main>
-      <section className="hero">
+      <nav className="navbar">
+        <a href="#home" className="logoLink">
+          <span className="logoMark">👻</span>
+          <span>Orion Pulls</span>
+        </a>
+
+        <div className="navLinks">
+          <a href="#home">Home</a>
+
+          <div className="navDropdown">
+            <a href="#packs">Rip&Ship ▾</a>
+            <div className="dropdownMenu">
+              <a href="#packs">Booster Packs</a>
+            </div>
+          </div>
+
+          <a href="#about">About Me</a>
+          <a href="#delivery">Delivery Fee</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <section id="home" className="hero">
         <div className="heroText">
           <p className="eyebrow">Orion Pulls</p>
           <h1>Pokémon Rip & Ship from the Netherlands</h1>
@@ -80,7 +102,21 @@ function App() {
         </div>
       </section>
 
-      <section className="section shippingOptions">
+      <section id="about" className="section aboutSection">
+        <div className="sectionHeader">
+          <div>
+            <p className="smallTitle">About Me</p>
+            <h2>About Orion Pulls</h2>
+          </div>
+        </div>
+        <div className="aboutBox">
+          <p>
+            Orion Pulls is a small Pokémon card rip & ship project from the Netherlands. The goal is to keep openings clear, fair, and fun: packs are opened live, hits are sleeved and toploaded, and cards are packed safely before shipping.
+          </p>
+        </div>
+      </section>
+
+      <section id="delivery" className="section shippingOptions">
         <div className="sectionHeader">
           <div>
             <p className="smallTitle">After your packs are opened</p>
@@ -123,7 +159,7 @@ function App() {
         </div>
       </section>
 
-      <section className="section contact">
+      <section id="contact" className="section contact">
         <p className="smallTitle">Ready to join?</p>
         <h2>Start With the Packs</h2>
         <p>
