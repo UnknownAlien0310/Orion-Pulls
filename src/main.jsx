@@ -99,7 +99,7 @@ function RipShipPage() {
   return (
     <section className="pageContent">
       <p className="smallTitle">Simple & transparent</p>
-      <h1>How Rip&Ship Works</h1>
+      <h1>How It Works</h1>
       <p className="pageIntro">Every order should be clear, fair, and easy to follow live.</p>
 
       <div className="steps">
@@ -112,31 +112,6 @@ function RipShipPage() {
       <div className="buttons">
         <a className="button primary" href="#/booster-packs"><Package size={18} /> View Booster Packs</a>
         <a className="button secondary" href="#/rules">Read Rules</a>
-      </div>
-    </section>
-  )
-}
-
-function RulesPage() {
-  return (
-    <section className="pageContent">
-      <p className="smallTitle">Please read first</p>
-      <h1>Rules</h1>
-      <p className="pageIntro">
-        These rules keep every rip clear, fair, and organized.
-      </p>
-
-      <div className="rulesPanel standalone">
-        <h2>Stream Rules</h2>
-        <ul>
-          <li>Packs are opened live on stream.</li>
-          <li>No refunds after a pack has been opened.</li>
-          <li>Pulls are random. Bad packs can happen.</li>
-          <li>Hits are sleeved and toploaded live.</li>
-          <li>Shipping is paid separately unless stated otherwise.</li>
-          <li>You can choose to ship now or hold your cards for up to 2 months.</li>
-          <li>Orders are handled manually while this is still being tested.</li>
-        </ul>
       </div>
     </section>
   )

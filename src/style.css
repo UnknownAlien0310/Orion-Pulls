@@ -85,7 +85,7 @@ main {
   position: absolute;
   top: 38px;
   left: 0;
-  min-width: 170px;
+  min-width: 190px;
   display: none;
   padding: 10px;
   border-radius: 18px;
@@ -407,4 +407,13 @@ h1 {
   .profileCard {
     padding: 18px;
   }
+}
+
+/* v13 navigation fix: Rules is now a main label, and Rip&Ship has two sub labels. */
+.navLinks > a[href="#/rules"] {
+  color: #ffffff;
+}
+
+.dropdownMenu a:first-child {
+  border-bottom: 1px solid rgba(216, 180, 254, 0.10);
 }
