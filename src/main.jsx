@@ -3,16 +3,16 @@ import { createRoot } from 'react-dom/client'
 import { Package, Video, ShieldCheck, Truck, Sparkles, Ghost, MessageCircle } from 'lucide-react'
 import roomGhost from './assets/room-ghost.png'
 import fullGhost from './assets/full-ghost.png'
-import blackBoltImg from './assets/packs/black-bolt.jpg'
+import blackBoltImg from './assets/packs/black-bolt.svg'
 import whiteFlareImg from './assets/packs/white-flare.svg'
-import destinedRivalsImg from './assets/packs/destined-rivals.jpg'
+import morePacksImg from './assets/packs/more-packs.svg'
 import './style.css'
 
 function App() {
   const packs = [
     { name: 'Black Bolt', status: 'Test stock soon', note: 'Opened live • Zekrom chase energy', image: blackBoltImg },
     { name: 'White Flare', status: 'Wanted next', note: 'Ghost-type IR vibes • Ghost pick', image: whiteFlareImg },
-    { name: 'Destined Rivals', status: 'Coming later', note: 'New packs added before streams', image: destinedRivalsImg },
+    { name: 'More packs', status: 'Coming later', note: 'New packs added before streams', image: morePacksImg },
   ]
 
   return (
@@ -80,6 +80,27 @@ function App() {
         </div>
       </section>
 
+      <section className="section shippingOptions">
+        <div className="sectionHeader">
+          <div>
+            <p className="smallTitle">After your packs are opened</p>
+            <h2>Shipping Options</h2>
+          </div>
+        </div>
+
+        <div className="shippingGrid">
+          <div className="shippingCard">
+            <h3>Ship Now</h3>
+            <p>Pay shipping after the stream and your cards will be packed safely and shipped from the Netherlands.</p>
+          </div>
+
+          <div className="shippingCard">
+            <h3>Hold My Cards</h3>
+            <p>Your cards can be held safely for up to 2 months so you can combine multiple stream orders into one shipment.</p>
+          </div>
+        </div>
+      </section>
+
       <section id="rules" className="section split">
         <div className="rulesPanel">
           <p className="smallTitle">Please read first</p>
@@ -90,6 +111,7 @@ function App() {
             <li>Pulls are random. Bad packs can happen.</li>
             <li>Hits are sleeved and toploaded live.</li>
             <li>Shipping is paid separately unless stated otherwise.</li>
+            <li>You can choose to ship now or hold your cards for up to 2 months.</li>
             <li>Orders are handled manually while this is still being tested.</li>
           </ul>
         </div>
