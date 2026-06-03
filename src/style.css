@@ -1129,7 +1129,7 @@ h1 {
 
 .packButtons {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 12px;
   margin-top: 24px;
 }
@@ -1209,10 +1209,11 @@ h1 {
 
 /* v28 price display */
 .packPrice {
-  color: #ffffff !important;
+  margin: 14px 0 0;
+  font-size: 28px;
   font-weight: 900;
-  font-size: 22px;
-  margin: 14px 0 0 !important;
+  color: #ffffff;
+  letter-spacing: -0.02em;
 }
 
 .cartItemPrice {
@@ -1225,5 +1226,27 @@ h1 {
 @media (max-width: 1200px) {
   .packsGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* v30: 4 cards on first row, center leftover single card on next row */
+.packsGrid > .packCard:last-child:nth-child(4n + 1) {
+  grid-column: 2 / span 2;
+  max-width: 420px;
+  width: 100%;
+  justify-self: center;
+}
+
+@media (max-width: 1200px) {
+  .packsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .packsGrid > .packCard:last-child:nth-child(4n + 1) {
+    grid-column: auto;
+    max-width: none;
+    width: auto;
+    justify-self: stretch;
   }
 }
