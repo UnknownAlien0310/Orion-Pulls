@@ -24,6 +24,10 @@ function getPage() {
   return hash.split('?')[0] || 'home'
 }
 
+function formatPrice(price) {
+  return `€${price.toFixed(2).replace('.', ',')}`
+}
+
 function App() {
   const [page, setPage] = useState(getPage())
   const [cartItems, setCartItems] = useState(() => {
@@ -208,7 +212,7 @@ function BoosterPacksPage({ addToCart }) {
       <h1>Booster Packs</h1>
       <p className="pageIntro">These are the packs planned for rip & ship streams.</p>
 
-      <div className="grid">
+      <div className="grid packsGrid">
         {packs.map((pack) => (
           <div className="card packCard" key={pack.name}>
             <img src={pack.image} alt={pack.name + ' pack art'} className="packImage" />
@@ -217,10 +221,11 @@ function BoosterPacksPage({ addToCart }) {
                 <Package />
                 <h3>{pack.name}</h3>
               </div>
+              <p className="packPrice">{formatPrice(pack.price)}</p>
               <div className="packButtons">
                 <button className="miniButton" type="button" onClick={() => addToCart(pack)}>
-                <ShoppingCart size={16} /> Add to Cart
-              </button>
+                  <ShoppingCart size={16} /> Add to Cart
+                </button>
               </div>
             </div>
           </div>
