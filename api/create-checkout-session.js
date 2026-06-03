@@ -3,9 +3,11 @@ const Stripe = require('stripe');
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const PACK_PRICES = {
-  'Black Bolt': 1495,
-  'White Flare': 1495,
-  'Destined Rivals': 1495,
+  'Black Bolt': 1195,
+  'White Flare': 1195,
+  'Journey Together': 799,
+  'Perfect Order': 799,
+  'Chaos Rising': 995,
 };
 
 module.exports = async function handler(req, res) {

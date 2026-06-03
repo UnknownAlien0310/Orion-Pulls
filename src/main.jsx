@@ -5,14 +5,18 @@ import roomGhost from './assets/room-ghost.png'
 import fullGhost from './assets/full-ghost.png'
 import blackBoltImg from './assets/packs/black-bolt.svg'
 import whiteFlareImg from './assets/packs/white-flare.svg'
-import destinedRivalsImg from './assets/packs/destined-rivals.svg'
+import journeyTogetherImg from './assets/packs/journey-together.svg'
+import perfectOrderImg from './assets/packs/perfect-order.svg'
+import chaosRisingImg from './assets/packs/chaos-rising.svg'
 import siteLogo from './assets/orion-logo.png'
 import './style.css'
 
 const packs = [
-  { name: 'Black Bolt', status: 'Test stock soon', note: 'Opened live • Zekrom chase energy', image: blackBoltImg },
-  { name: 'White Flare', status: 'Wanted next', note: 'Ghost-type IR vibes • Ghost pick', image: whiteFlareImg },
-  { name: 'Destined Rivals', status: 'Coming later', note: 'New packs added before streams', image: destinedRivalsImg },
+  { name: 'Black Bolt', price: 11.95, status: 'Available soon', note: 'Rip & Ship Booster Pack', image: blackBoltImg },
+  { name: 'White Flare', price: 11.95, status: 'Available soon', note: 'Rip & Ship Booster Pack', image: whiteFlareImg },
+  { name: 'Journey Together', price: 7.99, status: 'Available soon', note: 'Rip & Ship Booster Pack', image: journeyTogetherImg },
+  { name: 'Perfect Order', price: 7.99, status: 'Available soon', note: 'Rip & Ship Booster Pack', image: perfectOrderImg },
+  { name: 'Chaos Rising', price: 9.95, status: 'Available soon', note: 'Rip & Ship Booster Pack', image: chaosRisingImg },
 ]
 
 function getPage() {
@@ -298,6 +302,7 @@ function CartPage({ cartItems, updateCartQuantity, removeFromCart }) {
                 <div className="cartItemInfo">
                   <h3>{item.name}</h3>
                   <p>{item.note}</p>
+                  <p className="cartItemPrice">€ {item.price.toFixed(2)} each</p>
                   <button type="button" onClick={() => removeFromCart(item.name)}>Remove</button>
                 </div>
                 <div className="quantityRow">
@@ -317,7 +322,7 @@ function CartPage({ cartItems, updateCartQuantity, removeFromCart }) {
             </div>
             <div className="summaryLine">
               <span>Subtotal</span>
-              <strong>€ --,--</strong>
+              <strong>€ {cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)}</strong>
             </div>
             <div className="summaryLine">
               <span>Shipping</span>
@@ -337,6 +342,14 @@ function CartPage({ cartItems, updateCartQuantity, removeFromCart }) {
 }
 
 
+const PACK_PRICES_FRONTEND = {
+  'Black Bolt': 11.95,
+  'White Flare': 11.95,
+  'Journey Together': 7.99,
+  'Perfect Order': 7.99,
+  'Chaos Rising': 9.95,
+}
+
 function CheckoutPage({ cartItems = [] }) {
   const selectedPack = new URLSearchParams(window.location.hash.split('?')[1] || '').get('pack') || 'Booster Pack'
   const [quantity, setQuantity] = useState(1)
@@ -346,11 +359,11 @@ function CheckoutPage({ cartItems = [] }) {
 
   const checkoutItems = cartItems.length > 0
     ? cartItems
-    : [{ name: selectedPack, quantity, note: 'Rip & Ship Booster Pack' }]
+    : [{ name: selectedPack, quantity, price: PACK_PRICES_FRONTEND[selectedPack] || 0, note: 'Rip & Ship Booster Pack' }]
 
   const decreaseQuantity = () => setQuantity((current) => Math.max(1, current - 1))
   const increaseQuantity = () => setQuantity((current) => current + 1)
-  const subtotal = checkoutItems.reduce((total, item) => total + (14.95 * item.quantity), 0)
+  const subtotal = checkoutItems.reduce((total, item) => total + ((item.price || PACK_PRICES_FRONTEND[item.name] || 0) * item.quantity), 0)
 
   const handleStripePayment = async () => {
     setPaymentError('')
@@ -463,7 +476,7 @@ function CheckoutPage({ cartItems = [] }) {
             </div>
 
             <div className="summaryProductActions">
-              <div className="summaryPrice">€ {(14.95 * item.quantity).toFixed(2)}</div>
+              <div className="summaryPrice">€ {((item.price || PACK_PRICES_FRONTEND[item.name] || 0) * item.quantity).toFixed(2)}</div>
             </div>
           </div>
         ))}

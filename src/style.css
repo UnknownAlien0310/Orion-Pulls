@@ -1195,3 +1195,24 @@ h1 {
   flex-direction: column;
   justify-content: center;
 }
+
+
+/* v27: five booster pack choices */
+.grid {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+
+/* v28 price display */
+.packPrice {
+  color: #ffffff !important;
+  font-weight: 900;
+  font-size: 22px;
+  margin: 14px 0 0 !important;
+}
+
+.cartItemPrice {
+  color: #ffffff !important;
+  font-weight: 900;
+  margin-top: -2px !important;
+}
