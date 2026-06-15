@@ -221,10 +221,10 @@ function BoosterPacksPage({ addToCart }) {
                 <Package />
                 <h3>{pack.name}</h3>
               </div>
-              <p className="packPrice">{formatPrice(pack.price)}</p>
               <div className="packButtons">
-                <button className="miniButton" type="button" onClick={() => addToCart(pack)}>
-                  <ShoppingCart size={16} /> Add to Cart
+                <button className="miniButton packAddButton" type="button" onClick={() => addToCart(pack)}>
+                  <span className="addButtonText"><ShoppingCart size={16} /> Add to Cart</span>
+                  <span className="addButtonPrice">{formatPrice(pack.price)}</span>
                 </button>
               </div>
             </div>
