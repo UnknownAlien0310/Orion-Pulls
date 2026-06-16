@@ -218,13 +218,11 @@ function BoosterPacksPage({ addToCart }) {
             <img src={pack.image} alt={pack.name + ' pack art'} className="packImage" />
             <div className="packInfo">
               <div className="packTitleRow">
-                <Package />
-                <h3>{pack.name}</h3>
+                <h3>{pack.name} <span className="packNamePrice">{formatPrice(pack.price)}</span></h3>
               </div>
               <div className="packButtons">
                 <button className="miniButton packAddButton" type="button" onClick={() => addToCart(pack)}>
                   <span className="addButtonText"><ShoppingCart size={16} /> Add to Cart</span>
-                  <span className="addButtonPrice">{formatPrice(pack.price)}</span>
                 </button>
               </div>
             </div>

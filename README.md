@@ -25,3 +25,10 @@ This project should stay in Stripe test mode until the legal/KVK/guardian setup 
 ## v31 update
 - Moved each booster pack price next to the Add to Cart button on the Booster Packs page.
 - Kept Stripe test route and pack prices unchanged.
+
+
+## v32 changes
+- Removed the small box icon beside booster pack names.
+- Moved each pack price next to the product name.
+- Removed the price from the Add to Cart button.
+- Forced the Booster Packs grid to show maximum/exactly 4 products per row on desktop, then 2 on medium screens and 1 on mobile.

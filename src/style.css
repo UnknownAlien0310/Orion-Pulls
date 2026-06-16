@@ -1257,3 +1257,54 @@ h1 {
   border: 1px solid rgba(216, 180, 254, 0.24);
   white-space: nowrap;
 }
+
+
+/* v32: product name price, no box icon, exactly 4 products per row on desktop */
+.packsGrid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+.packTitleRow h3 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.packNamePrice {
+  color: #f3e8ff;
+  font-size: 18px;
+  font-weight: 900;
+  white-space: nowrap;
+  background: rgba(168, 85, 247, 0.22);
+  border: 1px solid rgba(216, 180, 254, 0.16);
+  border-radius: 999px;
+  padding: 7px 10px;
+}
+
+.packAddButton {
+  justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  .packsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .packsGrid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .packTitleRow h3 {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* v32 final override: center the Add to Cart text after moving price to product name */
+.packAddButton {
+  justify-content: center !important;
+}
