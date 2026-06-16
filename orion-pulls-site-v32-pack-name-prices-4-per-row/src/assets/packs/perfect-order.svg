@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="840" viewBox="0 0 600 840">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10051f"/>
+      <stop offset="55%" stop-color="#312e81"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="35%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.78"/>
+      <stop offset="65%" stop-color="#818cf8" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="840" rx="36" fill="url(#bg)"/>
+  <circle cx="300" cy="285" r="200" fill="url(#glow)"/>
+  <rect x="185" y="145" width="230" height="330" rx="28" fill="#ffffff" opacity="0.92"/>
+  <rect x="220" y="190" width="160" height="170" rx="24" fill="#818cf8" opacity="0.75"/>
+  <circle cx="300" cy="275" r="52" fill="#ffffff" opacity="0.88"/>
+  <text x="300" y="665" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="#ffffff">Perfect Order</text>
+  <text x="300" y="730" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#e9d5ff">Replace with your own photo</text>
+</svg>
